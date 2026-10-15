@@ -4,6 +4,7 @@ export function createAuthController({api, boot, showAuth, field, setUser}) {
   async function authenticate(mode) {
     try {
       const result = await api(mode, 'POST', {name:field('an'), email:field('ae'), password:field('ap')});
+      if(mode==='register'){window.alert('Sign up successful! Please log in.');document.querySelector('#auth-form')?.reset();document.querySelector('#auth-login-tab')?.click();return;}
       setUser(result.user); await boot();
     } catch (error) { const message = document.querySelector('#er'); if (message) message.textContent = error.message; }
   }
