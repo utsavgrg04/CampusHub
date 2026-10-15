@@ -28,8 +28,7 @@ class Database {
       this.local = new sqlite(path.resolve(__dirname,'..',process.env.DB_PATH||'campus.db'), { timeout: 5000 });
     }
     if (this.isPostgres) {
-      const { Pool, types, neonConfig } = require('@neondatabase/serverless');
-      neonConfig.webSocketConstructor=require('ws');
+      const { Pool, types } = require('pg');
       types.setTypeParser(20, value => Number(value));
       this.pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 3, idleTimeoutMillis: 10000, connectionTimeoutMillis: 20000 });
     }
