@@ -77,7 +77,7 @@ app.delete('/api/events/:id',async(q,s)=>{
  await db.prepare("delete from items where type='bookmark' and json_extract(data,'$.eid')=?").run(event.id);await db.prepare('delete from events where id=? and uid=?').run(event.id,q.uid);await log(q.uid,'Deleted an event');return 200;})();
  if(result!==200)return s.status(result).json({error:result===404?'Event not found.':'This event has registration history and cannot be deleted.'});s.json({ok:1})});
 app.get('/api/community',async(q,s)=>s.json(await db.prepare("select i.id,i.uid,i.data,i.ts,u.name from items i join users u on u.id=i.uid where type='post' and coalesce(u.auth_disabled,0)=0 order by i.id desc limit 100").all()));
-app.get('/api/teammates',async(q,s)=>s.json(await db.prepare('select id,name,profile from users where id!=? and coalesce(auth_disabled,0)=0').all(q.uid)));
+app.get('/api/teammates',async(q,s)=>{const users=await db.prepare('select id,name,profile from users where id!=? and coalesce(auth_disabled,0)=0').all(q.uid);s.json(users.filter(user=>{let profile={};try{profile=JSON.parse(user.profile||'{}')}catch{}return ['course','year','department','skills','interests','bio','about'].some(key=>String(profile[key]||'').trim())}))});
 app.delete('/api/history',async(q,s)=>{await db.prepare("delete from items where uid=? and type='history'").run(q.uid);s.json({ok:1})});
 app.get('/api/items/:t',async(q,s)=>{if(!TYPES.includes(q.params.t))return s.status(400).json({error:'Unsupported item type.'});s.json(await db.prepare('select * from items where uid=? and type=? order by id desc').all(q.uid,q.params.t))});
 async function validateItem(uid,type,body,id=0,previous=null){

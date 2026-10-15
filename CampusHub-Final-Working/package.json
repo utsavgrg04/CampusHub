@@ -8,6 +8,7 @@
     "test:api": "node scripts/auth-smoke.cjs",
     "test:database": "node scripts/database-smoke.cjs",
     "test:postgres": "node scripts/postgres-api-smoke.cjs",
+    "test:live": "node scripts/live-smoke.cjs",
     "migrate:postgres": "node scripts/migrate-to-postgres.cjs",
     "backup": "node scripts/backup-db.cjs"
   },
