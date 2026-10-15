@@ -1,0 +1,126 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* PAGE BACKGROUND */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFFDF5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* MAIN CHAT CONTAINER */
+.chat-container {
+    width: 420px;
+    max-width: 100%;
+    height: 600px;
+    max-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #FFFDF5;
+    border: 2px solid #95B1EE;
+    border-radius: 22px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 25px rgba(54, 76, 132, 0.18);
+}
+
+/* HEADER */
+.chat-header {
+    background-color: #95B1EE;
+    color: #364C84;
+
+    text-align: center;
+    padding: 22px 15px;
+    flex-shrink: 0;
+}
+
+.chat-header h2 {
+    font-size: 23px;
+    margin-bottom: 6px;
+}
+
+.chat-header p {
+    font-size: 14px;
+}
+
+/* CHAT MESSAGES AREA */
+.chat-box {
+    flex: 1;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    padding: 20px 14px;
+    overflow-y: auto;
+
+    background-color: #FFFDF5;
+}
+
+/* COMMON MESSAGE BUBBLES */
+.bot-message,
+.user-message {
+    display: block;
+    width: fit-content;
+    max-width: 82%;
+
+    padding: 12px 15px;
+    border-radius: 17px;
+
+    font-size: 15px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+/* CHATBOT MESSAGES — LEFT SIDE */
+.bot-message {
+    align-self: flex-start;
+
+    background-color: #E7F1A8;
+    color: #364C84;
+
+    border-bottom-left-radius: 5px;
+}
+
+/* YOUR MESSAGES — RIGHT SIDE */
+.user-message {
+    align-self: flex-end;
+
+    background-color: #364C84;
+    color: #FFFDF5;
+
+    border-bottom-right-radius: 5px;
+}
+
+/* INPUT AREA */
+.chat-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px;
+    background-color: #FFFDF5;
+    border-top: 1px solid #E7F1A8;
+    flex-shrink: 0;
+}
+
+/* MESSAGE INPUT */
+.chat-input input {
+    flex: 1;
+    min-width: 0;
+
+    padding: 13px 15px;

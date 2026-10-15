@@ -1,0 +1,46 @@
+body:has(.radar-page) aside{width:318px}
+body:has(.radar-page) .mn>header{height:86px}
+body:has(.radar-page) main{padding:8px 20px 24px}
+.radar-page{display:grid;gap:16px;min-width:0;padding-bottom:20px}
+.radar-hero{height:218px;position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;padding:28px 36px;border:1px solid rgba(54,76,132,.06);border-radius:22px;background:linear-gradient(108deg,#e8f0ff 0%,#e4edff 52%,#deebff 100%)}
+.radar-hero-copy{position:relative;z-index:1;max-width:61%}
+.radar-hero .discover-eyebrow{margin-bottom:8px;color:#5278b6;font-size:15px;font-weight:700}
+.radar-hero h1{margin:0;color:#0c285c;font-size:44px;font-weight:700;line-height:1.1;letter-spacing:-.035em}
+.radar-hero p{margin:8px 0 0;color:#6480aa;font-size:20px;line-height:1.4}
+.radar-campus-art{position:absolute;z-index:0;right:0;bottom:0;width:56%;height:100%;pointer-events:none}
+.radar-filters{min-width:0;padding:16px 22px;border:1px solid rgba(54,76,132,.07);border-radius:21px;background:#fffdf5;box-shadow:0 6px 24px rgba(54,76,132,.035)}
+.radar-filter-row{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(145px,.65fr) minmax(165px,.68fr) minmax(230px,1fr) 60px;gap:20px;min-width:0}
+.radar-filter-row>.discover-search,.radar-filter-row>.filter-select,.radar-filter-row>.advanced-filter-button{height:56px;border-radius:18px}
+.radar-search{gap:16px;padding-inline:20px}
+.radar-search>svg{width:24px;height:24px;color:#123e81}
+.radar-search input{font-size:16px}
+.radar-filter-row .filter-select{padding-inline:20px}
+.radar-filter-row .filter-select select{font-size:15px}
+.radar-location{gap:12px}
+.radar-location>svg{width:22px;height:22px;flex:none;color:#123e81}
+.radar-filter-toggle{border-radius:16px}
+.radar-advanced{display:flex;align-items:center;gap:18px;padding:12px 2px 0;color:#364c84;font-size:13px}
+.radar-advanced[hidden]{display:none}
+.radar-advanced>label{display:flex;align-items:center;gap:8px}
+.radar-advanced input[type="checkbox"]{accent-color:#6f9df0}
+.radar-advanced input[type="date"]{height:36px;padding:5px 8px;border-color:rgba(54,76,132,.12);border-radius:9px;background:#f4f7ff;color:#364c84;font:400 13px 'Poppins',sans-serif}
+.radar-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;min-width:0}
+.radar-event-card{height:334px;gap:22px;padding:16px}
+.radar-event-card .event-poster{width:168px;height:298px;flex-basis:168px}
+.radar-event-card .event-card-copy{padding-top:2px}
+.radar-event-card .event-tags{gap:7px}
+.radar-event-card .event-tag{padding-inline:12px;font-size:13px}
+.radar-hidden-tag{background:#eef3ca;color:#61742d}
+.radar-event-card .event-card-copy h2{margin-top:9px;font-size:17px;line-height:23px}
+.radar-event-card .event-description{height:48px;margin-top:4px;font-size:15px;line-height:21px}
+.radar-event-card .event-meta{height:27px;font-size:14px}
+.radar-event-card .event-meta svg{width:19px;height:19px;flex-basis:19px}
+.radar-event-card .event-card-actions{gap:16px}
+.radar-event-card .event-card-actions button{height:54px;border-radius:15px;font-size:15px}
+.radar-event-card .register-button{width:126px}
+.radar-event-card .map-button{width:116px;display:flex;align-items:center;justify-content:center;gap:8px}
+.radar-event-card .map-button svg{width:20px;height:20px}
+.radar-filter-toggle.active{background:#e5edff;border-color:#b8cef3;color:#234d91}
+@media(max-width:1550px){body:has(.radar-page) aside{width:250px;padding-inline:15px}.radar-filter-row{grid-template-columns:minmax(0,1.5fr) minmax(130px,.65fr) minmax(145px,.7fr) minmax(190px,1fr) 52px;gap:12px}.radar-results{grid-template-columns:repeat(2,minmax(0,1fr))}.radar-event-card{height:290px;gap:14px;padding:13px}.radar-event-card .event-poster{width:125px;height:262px;flex-basis:125px}.radar-event-card .event-card-actions{gap:8px}.radar-event-card .event-card-actions button{height:44px}.radar-event-card .register-button{width:112px}.radar-event-card .map-button{width:92px}}
+@media(max-width:1050px){.radar-hero{height:190px;padding:24px 28px}.radar-hero h1{font-size:38px}.radar-hero p{font-size:17px}.radar-campus-art{width:52%}.radar-filters{padding:13px}.radar-filter-row{grid-template-columns:minmax(0,1fr) minmax(130px,.55fr);gap:10px}.radar-search{grid-column:1/-1}.radar-filter-row>.filter-select:nth-child(2){grid-column:1}.radar-filter-row>.filter-select:nth-child(3){grid-column:2}.radar-location{grid-column:1}.radar-filter-toggle{grid-column:2}.radar-results{grid-template-columns:repeat(2,minmax(0,1fr))}.radar-event-card{gap:12px;padding:11px}.radar-event-card .event-poster{width:105px;flex-basis:105px}}
+@media(max-width:700px){body:has(.radar-page) .mn>header{height:65px}body:has(.radar-page) main{padding:10px 12px 20px}.radar-page{gap:10px}.radar-hero{height:170px;padding:19px;border-radius:17px}.radar-hero-copy{max-width:76%}.radar-hero .discover-eyebrow{font-size:12px}.radar-hero h1{font-size:31px}.radar-hero p{font-size:13px}.radar-campus-art{width:60%;opacity:.75}.radar-filters{padding:10px;border-radius:17px}.radar-filter-row{grid-template-columns:minmax(0,1fr) 48px;gap:8px}.radar-search{grid-column:1/-1;height:46px!important}.radar-filter-row>.filter-select{height:44px!important;padding-inline:12px}.radar-filter-row>.filter-select:nth-child(2){grid-column:1}.radar-filter-row>.filter-select:nth-child(3){grid-column:2}.radar-location{grid-column:1!important}.radar-filter-toggle{grid-column:2;height:44px!important}.radar-advanced{flex-wrap:wrap;gap:10px}.radar-advanced>label{font-size:12px}.radar-results{grid-template-columns:minmax(0,1fr);gap:10px}.radar-event-card{height:220px;gap:12px;padding:10px;border-radius:18px}.radar-event-card .event-poster{width:100px;height:198px;flex-basis:100px}.radar-event-card .event-card-copy h2{margin-top:5px;font-size:14px}.radar-event-card .event-description{height:36px;font-size:12px;line-height:17px}.radar-event-card .event-meta{height:20px;font-size:11px}.radar-event-card .event-card-actions{gap:8px}.radar-event-card .event-card-actions button{height:36px;font-size:12px}.radar-event-card .register-button{width:108px}.radar-event-card .map-button{width:76px}}

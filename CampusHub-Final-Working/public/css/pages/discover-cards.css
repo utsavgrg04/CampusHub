@@ -1,0 +1,53 @@
+/* Discover event cards: quiet single-column layout with the existing data and actions. */
+body:has(.discover-page) .event-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:292px;align-items:stretch;gap:14px}
+body:has(.discover-page) .discover-event-card{box-sizing:border-box;height:100%;min-height:0;align-items:stretch;gap:24px;padding:16px;border-radius:22px;box-shadow:0 3px 14px rgba(54,76,132,.035)}
+body:has(.discover-page) .discover-event-card:hover{box-shadow:0 7px 20px rgba(54,76,132,.075)}
+body:has(.discover-page) .event-poster{width:194px;height:236px;flex-basis:194px;border-radius:16px}
+body:has(.discover-page) .event-card-copy{gap:5px;padding:0 4px 0 0}
+body:has(.discover-page) .event-card-top{height:34px;align-items:center}
+body:has(.discover-page) .event-tags{gap:10px}
+body:has(.discover-page) .event-tag{max-width:190px;padding:5px 14px;font-size:13px;line-height:20px}
+body:has(.discover-page) .bookmark-button{width:36px;height:36px;flex-basis:36px;border-radius:11px}
+body:has(.discover-page) .bookmark-button:hover{background:#f1f5fc}
+body:has(.discover-page) .bookmark-button svg{width:23px;height:23px}
+body:has(.discover-page) .event-card-copy h2{overflow:visible;margin:0;color:#0c285c;font-size:22px;line-height:1.3;text-overflow:clip;white-space:normal}
+body:has(.discover-page) .event-description{height:auto;min-height:0;max-width:1000px;-webkit-line-clamp:2;margin:0 0 3px;font-size:15px;line-height:1.5}
+body:has(.discover-page) .event-meta{height:auto;min-height:24px;gap:10px;overflow:visible;font-size:14px;line-height:1.4}
+body:has(.discover-page) .event-meta svg{width:18px;height:18px;flex-basis:18px}
+body:has(.discover-page) .event-meta span{white-space:normal}
+body:has(.discover-page) .event-card-actions{gap:10px;margin-top:auto;padding-top:7px}
+body:has(.discover-page) .event-card-actions button{height:44px;border-radius:13px;font-size:14px}
+body:has(.discover-page) .register-button{width:150px}
+body:has(.discover-page) .map-button{width:112px}
+
+@media(max-width:1050px){
+  body:has(.discover-page) .event-grid{grid-template-columns:minmax(0,1fr)}
+}
+
+@media(max-width:900px){
+  body:has(.discover-page) .discover-event-card{min-height:240px;gap:18px;padding:14px}
+  body:has(.discover-page) .event-poster{width:160px;height:212px;flex-basis:160px}
+  body:has(.discover-page) .event-card-copy h2{font-size:19px}
+  body:has(.discover-page) .event-description{font-size:14px}
+  body:has(.discover-page) .event-meta{font-size:13px}
+}
+
+@media(max-width:700px){
+  body:has(.discover-page) .event-grid{gap:10px}
+  body:has(.discover-page) .discover-event-card{min-height:0;gap:12px;padding:11px;border-radius:17px}
+  body:has(.discover-page) .event-poster{width:92px;height:150px;flex-basis:92px;border-radius:12px}
+  body:has(.discover-page) .event-card-copy{gap:4px;padding:0}
+  body:has(.discover-page) .event-card-top{height:28px}
+  body:has(.discover-page) .event-tags{gap:5px}
+  body:has(.discover-page) .event-tag{max-width:104px;padding:3px 8px;font-size:10px;line-height:16px}
+  body:has(.discover-page) .bookmark-button{width:28px;height:28px;flex-basis:28px}
+  body:has(.discover-page) .bookmark-button svg{width:19px;height:19px}
+  body:has(.discover-page) .event-card-copy h2{font-size:14px;line-height:1.35}
+  body:has(.discover-page) .event-description{display:-webkit-box;-webkit-line-clamp:2;font-size:11px;line-height:1.4}
+  body:has(.discover-page) .event-meta{min-height:18px;gap:6px;font-size:10px;line-height:1.3}
+  body:has(.discover-page) .event-meta svg{width:14px;height:14px;flex-basis:14px}
+  body:has(.discover-page) .event-card-actions{gap:6px;padding-top:3px}
+  body:has(.discover-page) .event-card-actions button{height:32px;border-radius:10px;font-size:11px}
+  body:has(.discover-page) .register-button{width:100px}
+  body:has(.discover-page) .map-button{width:68px}
+}

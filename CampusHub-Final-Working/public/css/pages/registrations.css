@@ -1,0 +1,88 @@
+body:has(.registration-page) main{padding:12px 20px 22px}
+.registration-page{display:grid;gap:11px;min-width:0;padding-bottom:18px;color:#0c285c}
+.registration-hero{height:190px;position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;padding:26px 32px;border-radius:20px;background:linear-gradient(105deg,#eaf2ff 0%,#e3edff 55%,#dceaff 100%)}
+.registration-hero>div{position:relative;z-index:1;max-width:62%}
+.registration-hero>div>span{display:block;margin-bottom:8px;color:#5894ef;font-size:13px;font-weight:600;letter-spacing:.04em}
+.registration-hero h1{margin:0;color:#0c285c;font-size:39px;font-weight:700;line-height:1.15;letter-spacing:-.035em}
+.registration-hero p{margin:8px 0 0;color:#6a86b3;font-size:16px;line-height:1.45}
+.registration-hero-art{position:absolute;right:0;bottom:0;width:min(51%,820px);height:100%;pointer-events:none}
+.registration-content{min-height:calc(100vh - 340px);padding:15px 19px 20px;border:1px solid rgba(111,159,241,.11);border-radius:22px;background:linear-gradient(125deg,#f4f8ff,#f0f6ff 57%,#f5f8fc)}
+.registration-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+.registration-filters{display:flex;align-items:center;gap:10px;min-width:0;overflow-x:auto;padding:2px;scrollbar-width:thin;scrollbar-color:#c8d7f1 transparent}
+.registration-filters button{height:46px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:0 21px;border:1px solid rgba(82,125,194,.18);border-radius:14px;background:#f7f9fd;color:#426898;font:400 13px 'Poppins',sans-serif;white-space:nowrap;cursor:pointer;transition:background .16s,border-color .16s,color .16s}
+.registration-filters button:hover{border-color:#9ebbee;background:#fff}
+.registration-filters button.active{border-color:#70a0ef;background:linear-gradient(110deg,#78a9fa,#6097f1);color:#fff}
+.registration-filters button span{font-size:12px;opacity:.9}
+.registration-sort{height:46px;flex:none;display:flex;align-items:center;gap:7px;padding:0 12px;border:1px solid rgba(54,76,132,.1);border-radius:13px;background:#fff;color:#173d78}
+.registration-sort>svg:first-child{transform:rotate(180deg)}
+.registration-sort>svg:last-child{display:none}
+.registration-sort select{width:132px;height:42px;padding:0;border:0;outline:0;background:transparent;color:#173d78;font:500 13px 'Poppins',sans-serif;appearance:none;cursor:pointer}
+.registration-list{display:grid;gap:11px;min-width:0}
+.registration-card{min-width:0;min-height:176px;display:grid;grid-template-columns:116px minmax(0,1fr) minmax(190px,auto);align-items:center;gap:22px;padding:22px 23px 22px 28px;border:1px solid rgba(54,76,132,.08);border-radius:22px;background:#fffdf8;box-shadow:0 4px 18px rgba(54,76,132,.035)}
+.registration-event-icon{position:relative;width:114px;height:114px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(145deg,#eef5ff,#e5efff);color:#5995ee}
+.registration-event-icon>svg{width:43px;height:43px;stroke-width:1.9}
+.registration-event-icon>i{position:absolute;right:21px;bottom:24px;width:25px;height:25px;display:grid;place-items:center;border-radius:50%;background:#ffdc67;color:#fff;font-style:normal}
+.registration-event-icon>i svg{width:16px;height:16px;stroke-width:2.4}
+.registration-info{display:grid;align-content:center;justify-items:start;gap:11px;min-width:0}
+.registration-info h2{overflow:hidden;max-width:100%;margin:0;color:#102f66;font-size:20px;font-weight:700;line-height:1.3;text-overflow:ellipsis;white-space:nowrap}
+.registration-meta{display:flex;flex-wrap:wrap;align-items:center;gap:18px;color:#6985b1;font-size:13px}
+.registration-meta>span{display:inline-flex;align-items:center;gap:8px;min-width:0}
+.registration-meta svg{color:#204b88}
+.registration-category{max-width:180px;overflow:hidden;padding:5px 14px;border-radius:999px;background:#edf4ff;color:#5c96e8;font-size:12px;text-overflow:ellipsis;white-space:nowrap}
+.registration-actions{display:grid;justify-items:end;gap:13px}
+.registration-status{min-width:138px;height:44px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 13px;border-radius:13px;background:#eef8ed;color:#52963e;font-size:13px;font-weight:500}
+.registration-status i{width:9px;height:9px;border-radius:50%;background:#64b24e}
+.registration-status.past{background:#eff3f8;color:#7587a0}.registration-status.past i{background:#97a8bd}
+.registration-status.cancelled{background:#fff0ef;color:#c06464}.registration-status.cancelled i{background:#d77878}
+.registration-cancel{height:44px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 15px;border:1px solid rgba(91,125,173,.18);border-radius:13px;background:transparent;color:#183d77;font:500 12px 'Poppins',sans-serif;white-space:nowrap;cursor:pointer}
+.registration-cancel:hover{border-color:#e2a6a6;background:#fff8f7;color:#b65353}
+.registration-empty{min-height:350px;display:grid;align-content:center;justify-items:center;padding:25px;text-align:center;border:1px solid rgba(54,76,132,.07);border-radius:20px;background:#fffdf9}
+.registration-empty>span{width:68px;height:68px;display:grid;place-items:center;margin-bottom:11px;border-radius:22px;background:#eaf2ff;color:#5d98ed}
+.registration-empty h2{margin:0;color:#12386f;font-size:18px}
+.registration-empty p{margin:7px 0 16px;color:#6882a8;font-size:13px}
+.registration-empty a{height:39px;display:inline-flex;align-items:center;padding:0 15px;border-radius:11px;background:linear-gradient(110deg,#78a9fa,#6097f1);color:#fff;font-size:12px;text-decoration:none}
+@media(max-width:1100px){.registration-hero{height:165px}.registration-hero h1{font-size:33px}.registration-content{padding:13px}.registration-card{grid-template-columns:88px minmax(0,1fr) auto;gap:15px;padding:16px}.registration-event-icon{width:86px;height:86px}.registration-actions{gap:8px}.registration-status{min-width:118px;height:39px}.registration-cancel{height:39px;padding-inline:10px;font-size:11px}.registration-info h2{font-size:17px}}
+@media(max-width:760px){body:has(.registration-page) main{padding:10px 12px 18px}.registration-page{gap:9px}.registration-hero{height:142px;padding:18px;border-radius:16px}.registration-hero>div{max-width:78%}.registration-hero>div>span{font-size:10px;margin-bottom:5px}.registration-hero h1{font-size:25px}.registration-hero p{font-size:12px}.registration-hero-art{width:60%;opacity:.78}.registration-content{min-height:calc(100vh - 260px);padding:10px;border-radius:16px}.registration-toolbar{align-items:stretch;flex-direction:column;gap:8px;margin-bottom:11px}.registration-filters{gap:6px}.registration-filters button{height:36px;padding-inline:12px;border-radius:11px;font-size:11px}.registration-sort{align-self:flex-end;height:37px}.registration-sort select{height:34px;font-size:11px}.registration-card{grid-template-columns:58px minmax(0,1fr) auto;gap:9px;min-height:112px;padding:11px;border-radius:15px}.registration-event-icon{width:56px;height:56px;border-radius:13px}.registration-event-icon>svg{width:28px;height:28px}.registration-event-icon>i{right:5px;bottom:6px;width:17px;height:17px}.registration-event-icon>i svg{width:12px;height:12px}.registration-info{gap:6px}.registration-info h2{font-size:13px}.registration-meta{gap:6px;font-size:10px}.registration-meta>span{gap:4px}.registration-meta svg{width:14px;height:14px}.registration-category{padding:3px 9px;font-size:9px}.registration-actions{gap:5px}.registration-status{min-width:0;height:29px;gap:5px;padding:0 7px;font-size:9px}.registration-status i{width:6px;height:6px}.registration-cancel{width:31px;height:31px;padding:0;border-radius:9px}.registration-cancel span{display:none}.registration-cancel svg{width:16px;height:16px}.registration-empty{min-height:260px;padding:18px}.registration-empty h2{font-size:16px}.registration-empty p{font-size:11px}}
+
+@media(min-width:761px){
+  body:has(.registration-page) aside{width:218px;padding-inline:12px}
+  body:has(.registration-page) aside .brand{height:52px;margin-bottom:2px}
+  body:has(.registration-page) aside .brand-mark{width:43px;height:43px}
+  body:has(.registration-page) aside .brand h1{font-size:19px}
+  body:has(.registration-page) aside .nav-list a{height:34px;gap:11px;padding-inline:12px;border-radius:12px;font-size:12px}
+  body:has(.registration-page) aside .nav-list a svg{width:18px;height:18px}
+  body:has(.registration-page) main{padding:0 16px 16px}
+  .registration-page{gap:7px;margin-top:-8px;padding-bottom:12px}
+  .registration-hero{height:127px;padding:17px 23px;border-radius:15px}
+  .registration-hero>div>span{margin-bottom:5px;font-size:10px}
+  .registration-hero h1{font-size:32px}
+  .registration-hero p{margin-top:5px;font-size:13px}
+  .registration-content{min-height:calc(100vh - 225px);padding:12px 16px 16px;border-radius:17px}
+  .registration-toolbar{gap:10px;margin-bottom:15px}
+  .registration-filters{gap:7px;padding:1px}
+  .registration-filters button{height:32px;gap:4px;padding-inline:14px;border-radius:10px;font-size:10px}
+  .registration-filters button span{font-size:9px}
+  .registration-sort{height:32px;gap:5px;padding:0 9px;border-radius:9px}
+  .registration-sort>svg{width:14px;height:14px}
+  .registration-sort select{width:105px;height:30px;font-size:10px}
+  .registration-list{gap:7px}
+  .registration-card{grid-template-columns:77px minmax(0,1fr) minmax(150px,auto);gap:15px;min-height:117px;padding:15px 15px 15px 19px;border-radius:17px}
+  .registration-event-icon{width:76px;height:76px;border-radius:16px}
+  .registration-event-icon>svg{width:31px;height:31px}
+  .registration-event-icon>i{right:8px;bottom:9px;width:20px;height:20px}
+  .registration-event-icon>i svg{width:13px;height:13px}
+  .registration-info{gap:7px}
+  .registration-info h2{font-size:15px}
+  .registration-meta{gap:12px;font-size:10px}
+  .registration-meta>span{gap:6px}
+  .registration-meta svg{width:14px;height:14px}
+  .registration-category{padding:4px 10px;font-size:9px}
+  .registration-actions{gap:9px}
+  .registration-status-row{display:flex;align-items:center;gap:8px}
+  .registration-status{min-width:92px;height:31px;gap:6px;padding:0 9px;border-radius:10px;font-size:10px}
+  .registration-status i{width:7px;height:7px}
+  .registration-more{width:30px;height:30px;display:grid;place-items:center;color:#0c285c}
+  .registration-more svg{width:15px;height:15px}
+  .registration-cancel{height:32px;gap:7px;padding:0 10px;border-radius:10px;font-size:9px}
+  .registration-cancel svg{width:15px;height:15px}
+}

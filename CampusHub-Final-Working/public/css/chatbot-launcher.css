@@ -1,0 +1,38 @@
+.chatbot-launcher {
+  position: fixed;
+  right: 46px;
+  bottom: 59px;
+  z-index: 1000;
+  display: grid;
+  width: 92px;
+  height: 92px;
+  overflow: hidden;
+  place-items: center;
+  border: 3px solid rgba(255,255,255,.96);
+  border-radius: 50%;
+  background: #07163b;
+  box-shadow: 0 7px 24px rgba(18,49,101,.28), 0 0 0 1px rgba(63,112,199,.12);
+  transition: transform .18s ease, box-shadow .18s ease;
+  padding: 0;
+  cursor: pointer;
+}
+.chatbot-launcher:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 11px 28px rgba(18,49,101,.34), 0 0 0 4px rgba(102,156,255,.16);
+}
+.chatbot-launcher:active { transform: scale(.97); }
+.chatbot-launcher:focus-visible { outline: 3px solid #397df4; outline-offset: 4px; }
+.chatbot-launcher img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 760px) {
+  .chatbot-launcher { right: 16px; bottom: 32px; width: 74px; height: 74px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chatbot-launcher { transition: none; }
+}
+.chatbot-launcher[hidden]{display:none!important}
+.chatbot-popover{position:fixed;z-index:1001;right:46px;bottom:164px;width:min(420px,calc(100vw - 32px));height:min(650px,calc(100dvh - 120px));min-height:360px;overflow:visible;border:1px solid rgba(54,76,132,.16);border-radius:24px;background:#fffdf5;box-shadow:0 18px 52px rgba(18,49,101,.28)}
+.chatbot-popover[hidden]{display:none!important}
+.chatbot-popover iframe{display:block;width:100%;height:100%;border:0;border-radius:inherit;background:#fffdf5}
+.chatbot-close{position:absolute;z-index:2;top:-13px;right:-13px;display:grid;width:36px;height:36px;place-items:center;border:2px solid #fff;border-radius:50%;background:#364c84;color:#fff;font:600 23px/1 Arial,sans-serif;cursor:pointer;box-shadow:0 4px 12px rgba(18,49,101,.24)}
+.chatbot-close:focus-visible{outline:3px solid #5995f8;outline-offset:3px}
+@media(max-width:760px){.chatbot-popover{right:12px;bottom:116px;width:calc(100vw - 24px);height:min(620px,calc(100dvh - 140px));min-height:320px}}

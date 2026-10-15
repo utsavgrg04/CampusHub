@@ -1,0 +1,379 @@
+/* Shared non-dashboard sizing rules, based on the Discover page reference. */
+body:has(.shell):not(:has(.welcome)) .mn>header {
+  height: 86px;
+  min-height: 86px;
+  gap: 25px;
+  padding: 0 30px 0 40px;
+}
+
+body:has(.shell):not(:has(.welcome)) .mn>header>input {
+  max-width: 647px;
+}
+
+body:has(.shell):not(:has(.welcome)) .mn>header>.top-controls {
+  gap: 36px;
+}
+
+body:has(.shell):not(:has(.welcome)) .shell>aside {
+  width: 318px;
+  min-width: 318px;
+}
+
+body:has(.shell):not(:has(.welcome)) .mn>main {
+  padding: 0 20px 24px;
+}
+
+body:has(.shell):not(:has(.welcome)) main :is(
+  .discover-page,
+  .radar-page,
+  .recommendations-page,
+  .tasks-page,
+  .registration-page,
+  .event-tracker-page,
+  .reminder-page,
+  .map-page,
+  .planner-page,
+  .progress-page,
+  .achievement-page,
+  .community-page,
+  .teammates-page,
+  .notification-page,
+  .profile-page
+) {
+  --page-section-gap: 14px;
+  --page-card-radius: 20px;
+  --page-control-height: 48px;
+  display: grid;
+  gap: var(--page-section-gap);
+  min-width: 0;
+}
+
+body:has(.shell):not(:has(.welcome)) main .discover-page {
+  --page-section-gap: 12px;
+}
+
+/* Discover is the dimensional reference; keep each page's own artwork and content. */
+body:has(.shell):not(:has(.welcome)) main :is(.tracker-hero, .registration-hero) {
+  background: linear-gradient(105deg, #e8f0ff 0%, #e2edff 55%, #dceaff 100%);
+}
+
+body:has(.shell):not(:has(.welcome)) main :is(
+  .discover-hero,
+  .radar-hero,
+  .recommendations-hero,
+  .tasks-hero,
+  .registration-hero,
+  .tracker-hero,
+  .reminder-hero,
+  .map-hero,
+  .planner-hero,
+  .progress-hero,
+  .achievement-hero,
+  .community-hero,
+  .teammates-hero,
+  .notification-hero,
+  .profile-hero
+) {
+  height: 156px;
+  min-height: 156px;
+  padding: 24px 32px;
+  border-radius: 22px;
+}
+
+body:has(.shell):not(:has(.welcome)) main :is(
+  .discover-hero h1,
+  .radar-hero h1,
+  .recommendations-hero h1,
+  .tasks-hero h1,
+  .registration-hero h1,
+  .tracker-hero h1,
+  .reminder-hero h1,
+  .map-hero h1,
+  .planner-hero h1,
+  .progress-hero h1,
+  .achievement-hero h1,
+  .community-hero h1,
+  .teammates-hero h1,
+  .notification-hero h1,
+  .profile-hero h1
+) {
+  font-size: clamp(30px, 2.3vw, 42px);
+  font-weight: 700;
+  line-height: 1.13;
+  letter-spacing: -.035em;
+}
+
+body:has(.shell):not(:has(.welcome)) main :is(
+  .discover-hero p,
+  .radar-hero p,
+  .recommendations-hero p,
+  .tasks-hero p,
+  .registration-hero p,
+  .tracker-hero p,
+  .reminder-hero p,
+  .map-hero p,
+  .planner-hero p,
+  .progress-hero p,
+  .achievement-hero p,
+  .community-hero p,
+  .teammates-hero p,
+  .notification-hero p,
+  .profile-hero p
+) {
+  margin-top: 6px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* Shared shell cards retain their page-specific grid and interaction layout. */
+body:has(.shell):not(:has(.welcome)) main :is(
+  .discover-filters,
+  .discover-event-card,
+  .radar-event-card,
+  .recommendation-card,
+  .registration-content,
+  .registration-card,
+  .tracker-event-card,
+  .reminder-item,
+  .map-nearby-card,
+  .map-surface-card,
+  .map-detail-card,
+  .planner-mini-panel,
+  .planner-main,
+  .progress-stat-card,
+  .progress-goal-card,
+  .progress-tab-panel,
+  .achievement-form,
+  .achievement-grid,
+  .community-composer,
+  .community-post,
+  .teammate-card,
+  .notification-list,
+  .profile-panel
+) {
+  border-radius: var(--page-card-radius, 20px);
+}
+
+body:has(.shell):not(:has(.welcome)) #main>.card {
+  margin-bottom: 12px;
+  padding: 18px;
+  border-radius: 20px;
+}
+
+body:has(.shell):not(:has(.welcome)) #main>h2 {
+  margin: 0 0 14px;
+  color: var(--tx);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.03em;
+}
+
+body:has(.shell):not(:has(.welcome)) #main>.row {
+  gap: 12px;
+}
+
+body:has(.shell):not(:has(.welcome)) main :is(
+  .discover-search,
+  .discover-filter-row .filter-select,
+  .advanced-filter-button,
+  .teammates-search,
+  .teammates-department,
+  .registration-sort,
+  .map-control-select,
+  .map-location-button,
+  .map-search
+) {
+  min-height: var(--page-control-height, 48px);
+}
+
+body:has(.shell):not(:has(.welcome)) main :is(
+  .registration-filters button,
+  .notification-filters button,
+  .achievement-filters button,
+  .planner-view-switch button
+) {
+  min-height: var(--page-control-height, 48px);
+}
+
+body:has(.shell):not(:has(.welcome)) main :is(
+  .discover-event-card,
+  .radar-event-card,
+  .recommendation-card,
+  .registration-card,
+  .tracker-event-card,
+  .teammate-card
+) {
+  border: 1px solid rgba(54, 76, 132, .08);
+}
+
+@media (max-width: 1550px) {
+  body:has(.shell):not(:has(.welcome)) .shell>aside {
+    width: 250px;
+    min-width: 250px;
+    padding-inline: 15px;
+  }
+}
+
+@media (max-width: 1050px) {
+  body:has(.shell):not(:has(.welcome)) .mn>header {
+    gap: 12px;
+    padding-right: 15px;
+  }
+
+  body:has(.shell):not(:has(.welcome)) .mn>header>.top-controls {
+    gap: 11px;
+  }
+
+  body:has(.shell):not(:has(.welcome)) main :is(
+    .discover-hero,
+    .radar-hero,
+    .recommendations-hero,
+    .tasks-hero,
+    .registration-hero,
+    .tracker-hero,
+    .reminder-hero,
+    .map-hero,
+    .planner-hero,
+    .progress-hero,
+    .achievement-hero,
+    .community-hero,
+    .teammates-hero,
+    .notification-hero,
+    .profile-hero
+  ) {
+    height: 150px;
+    min-height: 150px;
+    padding: 22px 26px;
+  }
+}
+
+@media (max-width: 760px) {
+  body:has(.shell):not(:has(.welcome)) .mn>header {
+    height: 65px;
+    min-height: 65px;
+    padding: 8px 10px;
+  }
+
+  body:has(.shell):not(:has(.welcome)) .mn>header>.top-controls {
+    gap: 4px;
+  }
+
+  body:has(.shell):not(:has(.welcome)) .shell>aside {
+    width: 280px;
+    min-width: 280px;
+    padding-inline: 18px;
+  }
+
+  body:has(.shell):not(:has(.welcome)) .mn>main {
+    padding: 10px 12px 20px;
+  }
+
+  body:has(.shell):not(:has(.welcome)) main :is(
+    .discover-page,
+    .radar-page,
+    .recommendations-page,
+    .tasks-page,
+    .registration-page,
+    .event-tracker-page,
+    .reminder-page,
+    .map-page,
+    .planner-page,
+    .progress-page,
+    .achievement-page,
+    .community-page,
+    .teammates-page,
+    .notification-page,
+    .profile-page
+  ) {
+    gap: 10px;
+  }
+
+  body:has(.shell):not(:has(.welcome)) main :is(
+    .discover-hero,
+    .radar-hero,
+    .recommendations-hero,
+    .tasks-hero,
+    .registration-hero,
+    .tracker-hero,
+    .reminder-hero,
+    .map-hero,
+    .planner-hero,
+    .progress-hero,
+    .achievement-hero,
+    .community-hero,
+    .teammates-hero,
+    .notification-hero,
+    .profile-hero
+  ) {
+    height: 145px;
+    min-height: 145px;
+    padding: 18px;
+    border-radius: 17px;
+  }
+
+  body:has(.shell):not(:has(.welcome)) #main>.card {
+    padding: 14px;
+    border-radius: 17px;
+  }
+
+  body:has(.shell):not(:has(.welcome)) #main>h2 {
+    font-size: 23px;
+  }
+
+  body:has(.shell):not(:has(.welcome)) main :is(
+    .registration-filters button,
+    .notification-filters button,
+    .achievement-filters button,
+    .planner-view-switch button
+  ) {
+    min-height: 36px;
+  }
+
+  body:has(.shell):not(:has(.welcome)) main :is(
+    .discover-hero h1,
+    .radar-hero h1,
+    .recommendations-hero h1,
+    .tasks-hero h1,
+    .registration-hero h1,
+    .tracker-hero h1,
+    .reminder-hero h1,
+    .map-hero h1,
+    .planner-hero h1,
+    .progress-hero h1,
+    .achievement-hero h1,
+    .community-hero h1,
+    .teammates-hero h1,
+    .notification-hero h1,
+    .profile-hero h1
+  ) {
+    font-size: clamp(24px, 6vw, 30px);
+  }
+
+  body:has(.shell):not(:has(.welcome)) main :is(
+    .discover-hero p,
+    .radar-hero p,
+    .recommendations-hero p,
+    .tasks-hero p,
+    .registration-hero p,
+    .tracker-hero p,
+    .reminder-hero p,
+    .map-hero p,
+    .planner-hero p,
+    .progress-hero p,
+    .achievement-hero p,
+    .community-hero p,
+    .teammates-hero p,
+    .notification-hero p,
+    .profile-hero p
+  ) {
+    font-size: 12px;
+  }
+}
+
+/* Keep Tasks, Registrations, and Event tracker heroes aligned with Reminders. */
+body:has(.shell):not(:has(.welcome)) main :is(.registration-hero,.tracker-hero,.tasks-hero){height:156px;min-height:156px;padding:24px 32px;border:1px solid rgba(54,76,132,.06);border-radius:22px;background:linear-gradient(105deg,#e8f0ff 0%,#e2edff 55%,#dceaff 100%)}
+body:has(.shell):not(:has(.welcome)) main :is(.registration-hero h1,.tracker-hero h1,.tasks-hero h1){font-size:clamp(30px,2.3vw,42px);line-height:1.13;letter-spacing:-.035em}
+body:has(.shell):not(:has(.welcome)) main :is(.registration-hero p,.tracker-hero p,.tasks-hero p){margin-top:6px;color:#6480aa;font-size:16px;line-height:1.4}
+.registration-hero>div>span{display:none!important}
+@media(max-width:700px){body:has(.shell):not(:has(.welcome)) main :is(.registration-hero,.tracker-hero,.tasks-hero){height:150px;min-height:150px;padding:18px;border-radius:16px}body:has(.shell):not(:has(.welcome)) main :is(.registration-hero h1,.tracker-hero h1,.tasks-hero h1){font-size:24px;letter-spacing:-.6px}body:has(.shell):not(:has(.welcome)) main :is(.registration-hero p,.tracker-hero p,.tasks-hero p){font-size:12px;line-height:1.5}}

@@ -1,0 +1,1 @@
+export const storage={get(key,fallback=null){const value=localStorage.getItem(key);return value===null?fallback:value},set(key,value){localStorage.setItem(key,value)},remove(key){localStorage.removeItem(key)}};

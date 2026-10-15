@@ -1,0 +1,26 @@
+body:has(.recommendations-page) aside{width:318px}
+body:has(.recommendations-page) .mn>header{height:86px}
+body:has(.recommendations-page) main{padding:12px 20px 24px}
+.recommendations-page{display:grid;gap:16px;min-width:0;padding-bottom:20px}
+.recommendations-hero{height:170px;position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;padding:26px 34px;border:1px solid rgba(54,76,132,.06);border-radius:22px;background:linear-gradient(105deg,#e8efff 0%,#e3ecff 52%,#dce9ff 100%)}
+.recommendations-hero-copy{position:relative;z-index:1;max-width:66%}
+.recommendations-hero .discover-eyebrow{margin-bottom:7px;color:#365b91}
+.recommendations-hero h1{margin:0;color:#0c285c;font-size:38px;font-weight:700;line-height:1.15;letter-spacing:-.035em}
+.recommendations-hero p{margin:8px 0 0;color:#6480aa;font-size:17px;line-height:1.45}
+.recommendations-hero-art{position:absolute;z-index:0;right:0;bottom:0;width:46%;height:100%;pointer-events:none}
+.recommendation-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;min-width:0}
+.recommendation-card{height:260px;gap:24px;padding:16px}
+.recommendation-card .event-poster{width:145px;height:228px;flex-basis:145px}
+.recommendation-card .event-tags{gap:6px}
+.recommendation-card .event-tag{padding-inline:11px}
+.recommendation-hidden{background:#f0f4d8;color:#60702a}
+.recommendation-card .event-card-copy h2{margin-top:6px;font-size:15px}
+.recommendation-card .event-description{height:38px}
+.recommendation-card .event-meta{height:21px}
+.recommendation-card .event-card-actions{gap:10px}
+.recommendation-card .register-button{width:120px}
+.recommendation-card .map-button{width:104px;display:flex;align-items:center;justify-content:center;gap:7px}
+.recommendation-card .map-button svg{width:18px;height:18px}
+@media(max-width:1550px){body:has(.recommendations-page) aside{width:250px;padding-inline:15px}.recommendation-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.recommendations-hero-art{width:43%}.recommendation-card{gap:15px;padding:12px}.recommendation-card .event-poster{width:112px;flex-basis:112px}}
+@media(max-width:1050px){.recommendations-hero{height:155px;padding:22px 26px}.recommendations-hero h1{font-size:32px}.recommendations-hero p{font-size:15px}.recommendation-card{gap:12px;padding:11px}.recommendation-card .event-poster{width:100px;flex-basis:100px}}
+@media(max-width:700px){body:has(.recommendations-page) .mn>header{height:65px}body:has(.recommendations-page) main{padding:10px 12px 20px}.recommendations-page{gap:10px}.recommendations-hero{height:160px;padding:18px;border-radius:17px}.recommendations-hero-copy{max-width:76%}.recommendations-hero h1{font-size:27px}.recommendations-hero p{font-size:12px}.recommendations-hero-art{width:55%;opacity:.78}.recommendation-grid{grid-template-columns:minmax(0,1fr);gap:10px}.recommendation-card{height:220px;gap:12px;padding:10px;border-radius:18px}.recommendation-card .event-poster{width:100px;height:198px;flex-basis:100px}.recommendation-card .event-card-copy h2{font-size:14px}.recommendation-card .event-description{font-size:12px}.recommendation-card .event-meta{font-size:11px}.recommendation-card .event-card-actions button{height:36px}.recommendation-card .register-button{width:112px}.recommendation-card .map-button{width:78px}}

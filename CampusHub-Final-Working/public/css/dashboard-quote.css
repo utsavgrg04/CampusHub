@@ -1,0 +1,5 @@
+.dashboard .planner-mini-panel{position:relative}
+.dashboard-daily-quote-art{position:absolute;left:12px;bottom:4px;width:46%;max-width:150px}
+.dashboard-daily-quote-art img{display:block;width:100%;height:auto;max-height:124px;object-fit:contain}
+.dashboard-daily-quote{position:absolute;right:16px;bottom:28px;left:46%;margin:0;color:#36578f;font-size:clamp(13px,1vw,16px);font-weight:500;line-height:1.55}
+@media(max-width:760px){.dashboard-daily-quote-art{left:8px;bottom:4px;width:43%;max-width:138px}.dashboard-daily-quote{right:10px;bottom:20px;left:42%;font-size:14px}}

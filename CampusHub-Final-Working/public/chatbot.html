@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusHub assistant</title>
+    <link rel="stylesheet" href="/css/pages/chatbot.css">
+</head>
+<body>
+
+    <div class="chat-container">
+
+        <div class="chat-header">
+            <h2>🤖 My Chatbot</h2>
+            <p>Your Friendly Assistant</p>
+        </div>
+
+        <div id="chat-box" class="chat-box">
+            <div class="bot-message">
+                Hello! How can I help you today?
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="user-input"
+                   placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+
+    </div>
+
+    <script src="/js/pages/chatbot.js" defer></script>
+
+</body>
+</html>
