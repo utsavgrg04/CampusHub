@@ -71,7 +71,25 @@ class Database {
   }
   async execute(sql, args = []) {
     const client = context.getStore();
-    if (this.isPostgres) return client ? client.query(sql, args) : this.pool.query(sql, args);
+    if (this.isPostgres) {
+      const query = () => client ? client.query(sql, args) : this.pool.query(sql, args);
+      try { return await query(); }
+      catch (error) {
+        // Neon HTTP queries can fail transiently while the database endpoint wakes
+        // or resets a fetch connection. Retrying a read is safe; never replay writes.
+        const isRead = /^\s*select\b/i.test(sql);
+        const isFetchFailure = /Error connecting to database: TypeError: fetch failed/i.test(error.message || '');
+        if (!isRead || client || !isFetchFailure) throw error;
+        for (const delay of [100, 300]) {
+          await new Promise(resolve => setTimeout(resolve, delay));
+          try { return await query(); } catch (retryError) {
+            if (!/Error connecting to database: TypeError: fetch failed/i.test(retryError.message || '')) throw retryError;
+            error = retryError;
+          }
+        }
+        throw error;
+      }
+    }
     return new Promise((resolve, reject) => {
       try {
         const statement = this.local.prepare(sql);
