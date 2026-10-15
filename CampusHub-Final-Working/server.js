@@ -97,7 +97,7 @@ app.post('/api/items/:t',async(q,s)=>{const t=q.params.t,body=q.body;if(!TYPES.i
  if(!['history','notif'].includes(t))await log(q.uid,'Added '+t+(body.title?': '+String(body.title).slice(0,120):''));return {id};})();
  if(result.error)return s.status(result.status).json({error:result.error});s.status(201).json(result)});
 app.put('/api/items/:id',async(q,s)=>{const result=await db.transaction(async()=>{const item=await db.prepare('select * from items where id=? and uid=?').get(q.params.id,q.uid);if(!item)return {status:404,error:'Item not found.'};
- const error=validateItem(q.uid,item.type,q.body,item.id,JSON.parse(item.data));if(error)return error;
+ const error=await validateItem(q.uid,item.type,q.body,item.id,JSON.parse(item.data));if(error)return error;
  await db.prepare('update items set data=? where id=? and uid=?').run(JSON.stringify(q.body),item.id,q.uid);return {ok:1};})();if(result.error)return s.status(result.status).json({error:result.error});s.json(result)});
 app.delete('/api/items/:id',async(q,s)=>{const result=await db.transaction(async()=>{const deleted=await db.prepare('delete from items where id=? and uid=?').run(q.params.id,q.uid);if(deleted.changes)await log(q.uid,'Removed an item');return deleted;})();if(!result.changes)return s.status(404).json({error:'Item not found.'});s.json({ok:1})});
 app.use('/api',async(q,s)=>s.status(404).json({error:'API endpoint not found.'}));
