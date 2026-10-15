@@ -27,7 +27,7 @@ function installAuth({app,db,secret,authLog,dbReady=Promise.resolve()}){
   const userById=async id=>db.prepare('select * from users where id=?').get(id);
   const logAuth=async(userId,action)=>{try{await authLog(userId,action)}catch(error){console.warn('Authentication audit log failed:',error.code||error.name)}};
   const issueSession=(res,user)=>{const token=require('jsonwebtoken').sign({id:user.id,sv:user.session_version||0},secret,{expiresIn:'7d',issuer:'campushub',audience:'campushub-web'});cookie(res,sessionCookie,token,{httpOnly:true,maxAge:604800});cookie(res,csrfCookie,random(32),{httpOnly:false,maxAge:604800});};
-  const publicUser=u=>({id:u.id,name:u.name,email:u.email,role:u.role,profile:JSON.parse(u.profile||'{}')});
+  const publicUser=u=>{let profile={};try{const value=u.profile;if(value&&typeof value==='object'&&!Array.isArray(value))profile=value;else{const parsed=JSON.parse(value||'{}');if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed))profile=parsed}}catch{}return {id:u.id,name:u.name,email:u.email,role:u.role,profile}};
   const sendEmail=async(to,subject,html)=>{
     if(!process.env.RESEND_API_KEY||!process.env.EMAIL_FROM)throw Error('Email delivery is not configured. Set RESEND_API_KEY and EMAIL_FROM.');
     const response=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:`Bearer ${process.env.RESEND_API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({from:process.env.EMAIL_FROM,to:[to],subject,html}),signal:AbortSignal.timeout(12000)});
