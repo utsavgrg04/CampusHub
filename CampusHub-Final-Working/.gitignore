@@ -5,3 +5,8 @@ campus.db
 *.db-shm
 backups/
 .browser-qa-profile/
+
+# Vercel local credentials and project linkage
+.env.local
+.env.*.local
+.vercel/

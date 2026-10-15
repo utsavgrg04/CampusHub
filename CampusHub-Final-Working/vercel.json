@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "regions": ["sin1"],
+  "functions": {
+    "server.js": {
+      "maxDuration": 30
+    }
+  }
+}
