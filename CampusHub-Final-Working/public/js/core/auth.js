@@ -4,7 +4,6 @@ export function createAuthController({api, boot, showAuth, field, setUser}) {
   async function authenticate(mode) {
     try {
       const result = await api(mode, 'POST', {name:field('an'), email:field('ae'), password:field('ap')});
-      if(mode==='register'){const message=document.querySelector('#er');if(message)message.textContent=result.message||'Check your email for a verification link.';return;}
       setUser(result.user); await boot();
     } catch (error) { const message = document.querySelector('#er'); if (message) message.textContent = error.message; }
   }

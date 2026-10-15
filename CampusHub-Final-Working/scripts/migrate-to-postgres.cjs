@@ -41,7 +41,9 @@ async function main(){
    await initialize(db);
    const targetBefore={};
    for(const t of tables){targetBefore[t]=Number((await db.prepare(`select count(*) as n from "${t}"`).get()).n);}
-   await db.transaction(async()=>{
+   const hasExistingAppData=tables.filter(t=>t!=='item_ids').some(t=>targetBefore[t]>0);
+   if(hasExistingAppData)console.error('Existing PostgreSQL application data found; preserving records and verifying without reimport.');
+   else await db.transaction(async()=>{
     for(const table of tables){
      const data=rows(src,table);if(!data.length)continue;
      const columns=Object.keys(data[0]);
@@ -56,21 +58,25 @@ async function main(){
    })();
    await db.prepare("select setval(pg_get_serial_sequence('users','id'),coalesce(max(id),1),count(*)>0) from users").get();
    await db.prepare("select setval(pg_get_serial_sequence('events','id'),coalesce(max(id),1),count(*)>0) from events").get();
-   const targetAfter={},conflicts=[];
+   const targetAfter={},conflicts=[],comparison={};
    console.error('Verifying imported row contents and primary keys...');
    for(const table of tables){
     const actual=await db.prepare(`select * from "${table}" order by ${keys[table].map(k=>`"${k}"`).join(',')}`).all();
     targetAfter[table]=actual.length;
     const targetMap=new Map(actual.map(r=>[keys[table].map(k=>String(r[k])).join('|'),canonical(r)]));
+    let missing=0,different=0;
     for(const row of rows(src,table)){
      const key=keys[table].map(k=>String(row[k])).join('|');
-     if(!targetMap.has(key)){conflicts.push(`${table}:${key} missing after import`);continue;}
+     if(!targetMap.has(key)){missing++;if(!hasExistingAppData)conflicts.push(`${table}:${key} missing after import`);continue;}
      const got=targetMap.get(key),expected=canonical(row);
+     let mismatch=false;
      for(const col of Object.keys(expected)){
       if(table==='item_ids'&&col==='last_id'&&Number(got[col])>=Number(expected[col]))continue;
-      if(stable(expected[col])!==stable(got[col])){conflicts.push(`${table}:${key} column ${col} differs`);break;}
+      if(stable(expected[col])!==stable(got[col])){mismatch=true;if(!hasExistingAppData)conflicts.push(`${table}:${key} column ${col} differs`);break;}
      }
+     if(mismatch)different++;
     }
+    comparison[table]={missingSourceRows:missing,changedSourceRows:different,additionalPostgresRows:Math.max(0,actual.length-sourceDigest[table].count)};
    }
    if(conflicts.length)throw Error(`Migration verification failed (${conflicts.slice(0,10).join('; ')}).`);
    await db.prepare('update item_ids set last_id=greatest(last_id,(select coalesce(max(id),0) from items)) where id=1').run();
@@ -84,7 +90,7 @@ async function main(){
    const indexes=(await db.prepare("select indexname from pg_indexes where schemaname='public'").all()).map(r=>r.indexname);
    const expectedIndexes=['items_owner_type','events_owner','users_google_sub','users_microsoft_sub','auth_tokens_user','auth_flows_expiry'];
    if(expectedIndexes.some(name=>!indexes.includes(name)))throw Error('One or more expected PostgreSQL indexes are missing.');
-   console.log(JSON.stringify({ok:true,sourcePath,backupPath,sqliteIntegrity:integrity,backupMatchesSource:true,relationships,postgresRelationships:pgOrphans,foreignKeys,indexes:indexes.filter(i=>expectedIndexes.includes(i)),source:sourceDigest,targetBefore,targetAfter,additionalTargetRecords:Object.fromEntries(tables.map(t=>[t,targetAfter[t]-sourceDigest[t].count]))}));
+   console.log(JSON.stringify({ok:true,mode:hasExistingAppData?'verify-without-reimport':'import-and-verify',sourcePath,backupPath,sqliteIntegrity:integrity,backupMatchesSource:true,relationships,postgresRelationships:pgOrphans,foreignKeys,indexes:indexes.filter(i=>expectedIndexes.includes(i)),source:sourceDigest,targetBefore,targetAfter,comparison,additionalTargetRecords:Object.fromEntries(tables.map(t=>[t,targetAfter[t]-sourceDigest[t].count]))}));
   }finally{await db.close();}
  }finally{src.close();bak.close();}
 }

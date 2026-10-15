@@ -6,7 +6,7 @@ const express=require('express'),bc=require('bcryptjs'),jwt=require('jsonwebtoke
 if(!process.env.JWT_SECRET||process.env.JWT_SECRET.length<32||process.env.JWT_SECRET.includes('replace-with'))throw Error('Set a unique JWT_SECRET in .env before starting CampusHub.');
 const {Database,initialize}=require('./lib/database');
 const db=new Database(),S=process.env.JWT_SECRET;
-const dbReady=initialize(db);
+const dbReady=initialize(db);dbReady.catch(()=>{});
 const TYPES=['task','reg','ach','notif','goal','post','history','calendar','bookmark'];
 const insertItem=db.transaction(async(uid,type,data)=>{const {last_id:id}=await db.prepare('update item_ids set last_id=max(last_id,(select coalesce(max(id),0) from items))+1 where id=1 returning last_id').get();await db.prepare('insert into items(id,uid,type,data) values(?,?,?,?)').run(id,uid,type,JSON.stringify(data));return Number(id);});
 const pub=u=>({id:u.id,name:u.name,email:u.email,role:u.role,profile:JSON.parse(u.profile)});
@@ -101,4 +101,4 @@ app.put('/api/items/:id',async(q,s)=>{const result=await db.transaction(async()=
 app.delete('/api/items/:id',async(q,s)=>{const result=await db.transaction(async()=>{const deleted=await db.prepare('delete from items where id=? and uid=?').run(q.params.id,q.uid);if(deleted.changes)await log(q.uid,'Removed an item');return deleted;})();if(!result.changes)return s.status(404).json({error:'Item not found.'});s.json({ok:1})});
 app.use('/api',async(q,s)=>s.status(404).json({error:'API endpoint not found.'}));
 app.use((error,q,s,next)=>{if(s.headersSent)return next(error);const status=error.type==='entity.too.large'?413:error.type==='entity.parse.failed'?400:500;s.status(status).json({error:status===400?'Invalid JSON request.':status===413?'Request is too large.':'The operation could not be completed. Please try again.'})});
-const boot=auth.ready;app.locals.ready=boot;app.locals.database=db;if(require.main===module)boot.then(()=>{const server=app.listen(process.env.PORT||3000,process.env.HOST||'0.0.0.0',()=>console.log('CampusHub listening on port '+server.address().port));function shutdown(){server.close(()=>db.close().finally(()=>process.exit(0)));setTimeout(()=>process.exit(1),10000).unref()}process.once('SIGINT',shutdown);process.once('SIGTERM',shutdown)});module.exports=app;
+const boot=auth.ready;boot.catch(()=>{});app.locals.ready=boot;app.locals.database=db;if(require.main===module)boot.then(()=>{const server=app.listen(process.env.PORT||3000,process.env.HOST||'0.0.0.0',()=>console.log('CampusHub listening on port '+server.address().port));function shutdown(){server.close(()=>db.close().finally(()=>process.exit(0)));setTimeout(()=>process.exit(1),10000).unref()}process.once('SIGINT',shutdown);process.once('SIGTERM',shutdown)});module.exports=app;

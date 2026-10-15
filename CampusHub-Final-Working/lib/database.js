@@ -29,7 +29,7 @@ class Database {
     }
     if (this.isPostgres) {
       const { Pool, types, neonConfig } = require('@neondatabase/serverless');
-      if(globalThis.WebSocket)neonConfig.webSocketConstructor=globalThis.WebSocket;
+      neonConfig.webSocketConstructor=require('ws');
       types.setTypeParser(20, value => Number(value));
       this.pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 3, idleTimeoutMillis: 10000, connectionTimeoutMillis: 20000 });
     }
