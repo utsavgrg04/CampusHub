@@ -5,6 +5,24 @@ const path = require('node:path');
 
 const context = new AsyncLocalStorage();
 const jsonValue = (data, field, cast = '') => `(${data}::jsonb ->> '${field}')${cast}`;
+function splitSqlStatements(sql) {
+  const statements=[];let start=0,single=false,double=false,lineComment=false,blockComment=false,dollarTag=null;
+  for(let i=0;i<sql.length;i++){
+    const c=sql[i],next=sql[i+1];
+    if(lineComment){if(c==='\n')lineComment=false;continue}
+    if(blockComment){if(c==='*'&&next==='/'){blockComment=false;i++}continue}
+    if(dollarTag){if(sql.startsWith(dollarTag,i)){i+=dollarTag.length-1;dollarTag=null}continue}
+    if(single){if(c==="'"&&next==="'"){i++;continue}if(c==="'")single=false;continue}
+    if(double){if(c==='"'&&next==='"'){i++;continue}if(c==='"')double=false;continue}
+    if(c==='-'&&next==='-'){lineComment=true;i++;continue}
+    if(c==='/'&&next==='*'){blockComment=true;i++;continue}
+    if(c==="'"){single=true;continue}
+    if(c==='"'){double=true;continue}
+    if(c==='$'){const tag=sql.slice(i).match(/^\$[a-zA-Z_0-9]*\$/)?.[0];if(tag){dollarTag=tag;i+=tag.length-1;continue}}
+    if(c===';'){const statement=sql.slice(start,i).trim();if(statement)statements.push(statement);start=i+1}
+  }
+  const tail=sql.slice(start).trim();if(tail)statements.push(tail);return statements;
+}
 function postgresSql(sql) {
   let query = sql
     .replace(/json_extract\(data,\s*'\$\.eid'\)/g, jsonValue('data', 'eid', '::bigint'))
@@ -28,7 +46,9 @@ class Database {
       this.local = new sqlite(path.resolve(__dirname,'..',process.env.DB_PATH||'campus.db'), { timeout: 5000 });
     }
     if (this.isPostgres) {
-      const { Pool, types } = require('pg');
+      const { Pool, types, neonConfig } = require('@neondatabase/serverless');
+      neonConfig.webSocketConstructor=require('ws');
+      neonConfig.poolQueryViaFetch=true;
       types.setTypeParser(20, value => Number(value));
       this.pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 3, idleTimeoutMillis: 10000, connectionTimeoutMillis: 20000 });
     }
@@ -63,7 +83,9 @@ class Database {
   async exec(sql) {
     if (!this.isPostgres) return this.local.exec(sql);
     const client = context.getStore();
-    return (client || this.pool).query(sql);
+    let result;
+    for(const statement of splitSqlStatements(sql))result=await (client || this.pool).query(statement);
+    return result;
   }
   transaction(fn) {
     return async (...args) => {
